@@ -1,8 +1,8 @@
 package com.te.comparatorassignment.common;
 
-import java.util.Comparator;
+import java.util.Objects;
 
-public class Student implements Comparable<Student> {
+public class Student {
 	int studentId;
 	String studentName;
 	String studentAdress;
@@ -24,8 +24,26 @@ public class Student implements Comparable<Student> {
 	}
 
 	@Override
-	public int compareTo(Student o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int hashCode() {
+		return Objects.hash(studentId);
 	}
-}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		
+		if (studentId != other.studentId)
+			return false;
+		return true;
+	
+	
+
+	
+	}}
+

@@ -2,6 +2,7 @@ package com.te.comparatorassignment.common;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 
 import com.te.comparator.common.CompapareById;
@@ -9,13 +10,16 @@ import com.te.comparator.common.CompapareById;
 public class Studenttest {
 	public static void main(String[] args) {
 		boolean flag = true;
-		ArrayList<Student> arrayList = new ArrayList<Student>();
-		arrayList.add(new Student(1, "Aaron", "sikkim", 80, 15));
-		arrayList.add(new Student(2, "Chris", "Assam", 90, 13));
-		arrayList.add(new Student(3, "Stewie", "Mirzapur", 65, 16));
-		arrayList.add(new Student(4, "Meg", "Bangalore", 67, 17));
-		arrayList.add(new Student(5, "Peter", "Chennai", 68, 18));
-		arrayList.add(new Student(6, "Louis", "Mumbai", 69, 19));
+		HashSet<Student> arrayList1 = new HashSet<Student>();
+		arrayList1.add(new Student(1, "Aaron", "sikkim", 80, 15));
+		arrayList1.add(new Student(1, "Aaron", "sikkim", 80, 15));
+		arrayList1.add(new Student(1, "Aaron", "sikkim", 80, 15));
+		arrayList1.add(new Student(2, "Chris", "Assam", 90, 13));
+		arrayList1.add(new Student(3, "Stewie", "Mirzapur", 65, 16));
+		arrayList1.add(new Student(4, "Meg", "Bangalore", 67, 17));
+		arrayList1.add(new Student(5, "Peter", "Chennai", 68, 18));
+		arrayList1.add(new Student(6, "Louis", "Mumbai", 69, 19));
+		ArrayList<Student> arrayList = new ArrayList<Student>(arrayList1);
 		do {
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter 1 to sort by ID");
@@ -63,19 +67,26 @@ public class Studenttest {
 				System.out.println("Error!!! : Please enter a value between 1 to 5 ");
 				continue;
 			}
-			Scanner sc1 = new Scanner(System.in);
-			System.out.println();
-			System.out.println("If you wish to continue, type YES");
-			System.out.println("If you wish to quit, type NO");
-			String str = sc1.next();
-			if (str.equalsIgnoreCase("yes")) {
-				flag = true;
-			} else if (str.equalsIgnoreCase("no")) {
-				flag = false;
-				System.out.println("Program Terminated. Thank you");
-			} else {
-				System.out.println("Error!!! : Please type only YES or NO ");
-			}
+			boolean flag1;
+
+			do {
+				Scanner sc1 = new Scanner(System.in);
+				System.out.println();
+				System.out.println("If you wish to continue, type YES");
+				System.out.println("If you wish to quit, type NO");
+				String str = sc1.next();
+				if (str.equalsIgnoreCase("yes")) {
+					flag = true;
+					flag1 = false;
+				} else if (str.equalsIgnoreCase("no")) {
+					flag = false;
+					flag1 = false;
+					System.out.println("Program Terminated. Thank you");
+				} else {
+					System.out.println("Error!!! : Please type only YES or NO ");
+					flag1 = true;
+				}
+			} while (flag1);
 		} while (flag);
 	}
 }
